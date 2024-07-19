@@ -1,7 +1,21 @@
-class Pipe{
+class Circle{
+    public XYZ Center { get; set; }
+    public double Radius { get; set; }
+    public XYZ normal { get;}
+
+    public Circle(XYZ center, double radius, Arc arc)
+    {
+        Center = center;
+        Radius = radius;
+        XYZ normal = arc.GetPlane().Normal;
+    }
+}
+
+public class IrregularCircle
+{
     public List<Line> Lines { get; private set; }
 
-    public Pipe()
+    public IrregularCircle()
     {
         Lines = new List<Line>();
     }
@@ -21,7 +35,7 @@ class Pipe{
         }
         TaskDialog.Show("Irregular Circle Lines", string.Join("\n", lineInfo));
     }
-    /*
+
     public bool IsClosed()
     {
         if (Lines.Count < 2) return false;
@@ -30,6 +44,5 @@ class Pipe{
         XYZ lastEnd = Lines[Lines.Count - 1].GetEndPoint(1);
 
         return firstStart.IsAlmostEqualTo(lastEnd);
-    }*/
+    }
 }
-
